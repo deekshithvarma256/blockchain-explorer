@@ -25,7 +25,7 @@ import { connect } from 'react-redux';
 import { currentChannelSelector } from '../../state/redux/charts/selectors';
 import { tableOperations } from '../../state/redux/tables';
 
-const {txnList, blockSearch} =tableOperations
+const { txnList, blockSearch } = tableOperations;
 
 /* istanbul ignore next */
 const styles = theme => {
@@ -42,12 +42,12 @@ const styles = theme => {
 			marginLeft: '10%',
 			marginRight: '10%'
 		},
-		dashboardSearch:{
+		dashboardSearch: {
 			position: 'absolute',
 			width: '80%'
 		},
-		search :{
-			marginLeft:'10px'
+		search: {
+			marginLeft: '10px'
 		},
 		blocks: {
 			height: 175,
@@ -170,11 +170,21 @@ export class DashboardView extends Component {
 	};
 
 	render() {
-		const { dashStats, peerList, txnList, blockSearch, blockActivity, transactionByOrg } = this.props;
+		const {
+			dashStats,
+			peerList,
+			txnList,
+			blockSearch,
+			blockActivity,
+			transactionByOrg
+		} = this.props;
 		const { hasDbError, notifications } = this.state;
-		var searchError = ''
-		if(typeof txnList==='string'){searchError='Txn not found'; }
-		else if(typeof blockSearch==='string'){searchError='Block not found'}
+		var searchError = '';
+		if (typeof txnList === 'string') {
+			searchError = 'Txn not found';
+		} else if (typeof blockSearch === 'string') {
+			searchError = 'Block not found';
+		}
 		if (hasDbError) {
 			return (
 				<div
@@ -196,14 +206,18 @@ export class DashboardView extends Component {
 		return (
 			<div className={classes.background}>
 				<div className={classes.view}>
-					<div className={classes.dashboardSearch}>
-						<SearchByQuery getTxnList={this.props.getTxnList} getBlockSearch={this.props.getBlockSearch}
-							currentChannel={this.props.currentChannel}
-							txnList={txnList} blockSearch={blockSearch}
-							searchError={searchError} />
-					</div>
-				</div>
-				<div className={classes.view}>
+					<Row>
+						<Col sm="12" md="6" style={{ margin: 'auto' }}>
+							<SearchByQuery
+								getTxnList={this.props.getTxnList}
+								getBlockSearch={this.props.getBlockSearch}
+								currentChannel={this.props.currentChannel}
+								txnList={txnList}
+								blockSearch={blockSearch}
+								searchError={searchError}
+							/>
+						</Col>
+					</Row>
 					<Row>
 						<Col sm="12">
 							<Card className={classes.blocks}>
@@ -303,8 +317,8 @@ DashboardView.propTypes = {
 const mapStateToProps = state => {
 	return {
 		currentChannel: currentChannelSelector(state)
-	}
-}
+	};
+};
 const mapDispatchToProps = {
 	getTxnList: txnList,
 	getBlockSearch: blockSearch
@@ -312,5 +326,5 @@ const mapDispatchToProps = {
 const connectedComponent = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(DashboardView)
+)(DashboardView);
 export default withStyles(styles)(connectedComponent);
