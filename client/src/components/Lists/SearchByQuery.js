@@ -41,9 +41,9 @@ const useStyles = makeStyles(theme =>
 		iconButton: {
 			height: 40,
 			width: 40,
-			color: '#21295c',
-			backgroundColor: '#b9d6e1',
-			borderRadius: 15
+			color: '#21295c'
+			// backgroundColor: '#b9d6e1',
+			// borderRadius: 15
 		}
 	})
 );
@@ -60,21 +60,19 @@ const SearchByQuery = props => {
 	const [searchClick, setSearchClick] = useState(false);
 
 	useEffect(() => {
-		if (props.searchError && searchClick) {
-			setSearchClick(false);
+		//searchClick flag is used to set error even if props.searchError remains same props.searchError
+		if (searchClick) {
 			setError(props.searchError);
+			if (!error) handleDialogOpen();
+			setSearchClick(false);
 		}
-	}, [props.searchError, searchClick]);
-	// useEffect(() => {
-	//   if (searchClick && ((selectedOption === options[0] && typeof txnList != 'string')) || (selectedOption === options[1] && typeof blockSearch != 'string')) handleDialogOpen();
-	// }, [txnList,blockSearch, searchClick])
+	}, [searchClick]);
 	const searchData = async () => {
 		if (selectedOption === 'Txn Hash') {
 			await props.getTxnList(props.currentChannel, search);
 		} else if (selectedOption === 'Block No') {
 			await props.getBlockSearch(props.currentChannel, search);
 		}
-		handleDialogOpen();
 		setSearchClick(true);
 	};
 

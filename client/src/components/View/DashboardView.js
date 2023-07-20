@@ -50,23 +50,61 @@ const styles = theme => {
 			marginLeft: '10px'
 		},
 		blocks: {
-			height: 175,
+			[theme.breakpoints.only('xs')]: {
+				//titan
+				height: '175px !important'
+			},
+			[theme.breakpoints.down('md')]: {
+				//titan
+				height: 145
+			},
+			[theme.breakpoints.up('md')]: {
+				//titan
+				height: 175
+			},
+			[theme.breakpoints.up('lg')]: {
+				//titan
+				height: 185
+			},
+			// height: 175,
+			minWidth: 280,
 			marginBottom: 20,
+			paddingBottom: 20,
 			backgroundColor: dark ? '#453e68' : '#ffffff',
 			boxShadow: dark ? '1px 2px 2px rgb(215, 247, 247)' : undefined
 		},
 		count: {
-			marginTop: '55%',
-			color: dark ? '#ffffff' : undefined
+			color: dark ? '#ffffff' : undefined,
+			[theme.breakpoints.only('xs')]: {
+				//titan
+				marginTop: '10% !important'
+			},
+			[theme.breakpoints.up('xs')]: {
+				marginTop: '55%'
+			}
 		},
 		statistic: {
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
 			display: 'block',
 			float: 'left',
 			height: '100%',
 			width: '25%',
 			textAlign: 'center',
-			fontSize: '18pt',
-			color: dark ? '#ffffff' : '#000000'
+			// fontSize: '18pt',
+			color: dark ? '#ffffff' : '#000000',
+			color: dark ? '#ffffff' : '#000000',
+			[theme.breakpoints.only('xs')]: {
+				//titan
+				fontSize: '8pt !important'
+			},
+			[theme.breakpoints.down('md')]: {
+				//titan
+				fontSize: '12pt'
+			},
+			[theme.breakpoints.up('md')]: {
+				fontSize: '18pt'
+			}
 		},
 		vdivide: {
 			'&::after': {
@@ -80,8 +118,15 @@ const styles = theme => {
 		},
 		avatar: {
 			justifyContent: 'center',
-			marginLeft: '60%',
-			marginTop: '65%'
+			[theme.breakpoints.only('xs')]: {
+				//titan
+				marginLeft: '35% !important',
+				marginTop: '25% !important'
+			},
+			[theme.breakpoints.up('xs')]: {
+				marginLeft: '60%',
+				marginTop: '65%'
+			}
 		},
 		node: {
 			color: dark ? '#183a37' : '#21295c',
@@ -100,6 +145,7 @@ const styles = theme => {
 			backgroundColor: dark ? 'rgb(252, 224, 174)' : '#ffeed8'
 		},
 		section: {
+			minWidth: 280,
 			height: 335,
 			marginBottom: '2%',
 			color: dark ? '#ffffff' : undefined,
@@ -207,7 +253,7 @@ export class DashboardView extends Component {
 			<div className={classes.background}>
 				<div className={classes.view}>
 					<Row>
-						<Col sm="12" md="6" style={{ margin: 'auto' }}>
+						<Col sm="12" md="6" style={{ margin: '10px auto 0px' }}>
 							<SearchByQuery
 								getTxnList={this.props.getTxnList}
 								getBlockSearch={this.props.getBlockSearch}
