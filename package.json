@@ -48,7 +48,7 @@
 		"swagger-ui-express": "^4.3.0",
 		"utf8-bytes": "0.0.1",
 		"winston": "^2.2.0",
-		"ws": "^7.4.6",
+		"ws": "^7.5.10",
 		"yn": "^4.0.0"
 	},
 	"overrides": {
